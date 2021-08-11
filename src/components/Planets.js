@@ -7,6 +7,7 @@ const Planets = () => {
   const [page, setPage] = useState(1);
   const { isLoading, isError, error, data, isFetching, isPreviousData } = useQuery(["planets", page], () => api.getPlanets(page), {
     keepPreviousData: true,
+    staleTime: 5000,
   });
 
   return (
@@ -27,7 +28,7 @@ const Planets = () => {
       >
         Next Page
       </button>
-      {isFetching ? <span> Loading...</span> : null}{" "}
+      {isFetching ? <span> Loading...</span> : null}
       {isLoading ? (
         <div>Loading data</div>
       ) : isError ? (
